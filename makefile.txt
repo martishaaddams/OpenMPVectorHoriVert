@@ -1,0 +1,22 @@
+CC=g++
+    
+CFLAGS=-c -Wall -Wextra --pedantic -Wvla -std=c++11
+all: ComplexVector
+ComplexVector: main.o complexnumber.o  complexvector.o complexvector1.o complexvector0.o scan.o autotest.o
+	$(CC) main.o complexvector.o complexnumber.o complexvector1.o complexvector0.o scan.o autotest.o -o ComplexVector
+main.o: main.cpp
+	$(CC) $(CFLAGS) main.cpp
+complexnumber.o: complexnumber.cpp
+	$(CC) $(CFLAGS) complexnumber.cpp
+complexvector.o: complexvector.cpp
+	$(CC) $(CFLAGS) complexvector.cpp
+complexvector1.o: complexvector1.cpp
+	$(CC) $(CFLAGS) complexvector1.cpp
+complexvector0.o: complexvector0.cpp
+	$(CC) $(CFLAGS) complexvector0.cpp
+scan.o: scan.cpp
+	$(CC) $(CFLAGS) scan.cpp
+autotest.o: autotest.cpp
+	$(CC) $(CFLAGS) autotest.cpp
+clean:
+	rm -rf *.o CVector
