@@ -19,6 +19,7 @@ public:
     const CComplexVector0 operator +(const CComplexVector0 &k );
     const CComplexVector0 operator -(const CComplexVector0 &k );
     const CComplexVector0 operator *(const CComplexVector0 &k );
+    const CComplexVector0 operator ^(const CComplexVector0 &k );
     using CComplexVector::operator =;//check
     int output(const std::string& Filename);
 };

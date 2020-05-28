@@ -35,9 +35,10 @@ int main(void)
     a[1] = 2;
     b[0] = 8;
     b[1] = 5;
-    CComplexVector1 m(10000000);
-    CComplexVector1 n(10000000);
-    CComplexVector0 k;
+    CComplexVector1 m(1'000'000);
+    CComplexVector1 n(1'000'000);
+    CComplexVector1 k;
+    ComplexNumber v;
     m.op = "without";
     n.op = "without";
     for (int i = 0; i < m.n; i++)
@@ -50,9 +51,13 @@ int main(void)
         n.arr[i].a = b[0];
         n.arr[i].b = b[1];
     }
-    k=m + n;
-    //k.output("my.txt");
-    m.op = "with";
+   // m.out();
+    //n.out();
+    //k=m*n;
+    //k.out();
+    v=m^n;
+    //v.outp();
+    /*m.op = "with";
     n.op = "with";
     a[0] = 3;
     a[1] = 4;
@@ -68,7 +73,7 @@ int main(void)
         n.arr[i].a = b[0];
         n.arr[i].b = b[1];
     }
-    k=m + n;
+    k=m + n;*/
     //k.output("your.txt");
 
     //m + n;

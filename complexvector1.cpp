@@ -7,19 +7,19 @@ const CComplexVector1 CComplexVector1::operator +(const CComplexVector1& k)
    // z.out();
     //cout<<endl;
 
-    if ((this->op == "with") || (k.op == "with"))
+    /*if ((this->op == "with") || (k.op == "with"))
         cout << "omp" << endl;
     else
-        cout << "no omp" << endl;
+        cout << "no omp" << endl;*/
     std::chrono::time_point<std::chrono::system_clock> start = std::chrono::system_clock::now();
-    if((this->op=="with")||(k.op=="with"))
+   // if((this->op=="with")||(k.op=="with"))
 #pragma omp parallel for
 
     for(int i=0;i<n;i++)
     {
         z.arr[i]=arr[i]+k.arr[i];
-        //z.arr[i].outp();
-        //cout<<endl;
+        z.arr[i].outp();
+        cout<<endl;
     }
     std::chrono::time_point<std::chrono::system_clock> end = std::chrono::system_clock::now();
     int elapsed_ms = static_cast<int>(std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count());
@@ -47,23 +47,39 @@ const CComplexVector1 CComplexVector1::operator -(const CComplexVector1 &k)
 }
 const CComplexVector1 CComplexVector1::operator *(const CComplexVector1 &k)
 {
+    CComplexVector1 z(n);
+    for (int i = 0; i < n; i++)
+    {
+        z.arr[i] = arr[i] * k.arr[i];
+
+    }
+    return z;
+}
+const ComplexNumber CComplexVector1::operator ^(const CComplexVector1 &k)
+{
      CComplexVector1 z(n);
-if ((this->op == "with") || (k.op == "with"))
-        cout << "omp" << endl;
-    else
-        cout << "no omp" << endl;
-    std::chrono::time_point<std::chrono::system_clock> start = std::chrono::system_clock::now();
-    if((this->op=="with")||(k.op=="with"))
+     ComplexNumber v;
+     v.SetZero();
+     std::chrono::time_point<std::chrono::system_clock> start = std::chrono::system_clock::now();
+#pragma omp parallel for
+     for (int i = 0; i < n; i++)
+     {
+         z.arr[i] = arr[i] * k.arr[i];
+
+     }
+     std::chrono::time_point<std::chrono::system_clock> end = std::chrono::system_clock::now();
+     int elapsed_ms = static_cast<int>(std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count());
+     cout << "ComplexVector1 parallel " << elapsed_ms << endl;
+     start = std::chrono::system_clock::now();
 #pragma omp parallel for
     for(int i=0;i<n;i++)
     {
-        z.arr[i]=arr[i]*k.arr[i];
-
+        v=v+z.arr[i];
     }
-    std::chrono::time_point<std::chrono::system_clock> end = std::chrono::system_clock::now();
-    int elapsed_ms = static_cast<int>(std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count());
+    end = std::chrono::system_clock::now();
+    elapsed_ms = static_cast<int>(std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count());
     cout << "ComplexVector1 parallel " << elapsed_ms << endl;
-    return z;
+    return v;
 }
 /*CComplexVector1& CComplexVector1::operator =(const CComplexVector1 &k)
 {
