@@ -35,8 +35,8 @@ int main(void)
     a[1] = 2;
     b[0] = 8;
     b[1] = 5;
-    CComplexVector1 m(1'000'000);
-    CComplexVector1 n(1'000'000);
+    CComplexVector1 m(1000000);
+    CComplexVector1 n(1000000);
     CComplexVector1 k;
     ComplexNumber v;
     m.op = "without";
